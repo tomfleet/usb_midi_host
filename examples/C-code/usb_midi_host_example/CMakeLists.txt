@@ -28,6 +28,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../.. usb_midi_host)
 add_executable(usb_midi_host_example
     usb_midi_host_example.c
+    midi_handler.c
 )
 
 pico_enable_stdio_uart(usb_midi_host_example 1)
