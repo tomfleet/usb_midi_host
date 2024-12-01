@@ -31,25 +31,8 @@ add_executable(usb_midi_host_example
 )
 
 pico_enable_stdio_uart(usb_midi_host_example 1)
-target_compile_definitions(usb_midi_host_example PRIVATE CFG_TUSB_MCU=OPT_MCU_RP2040)
-target_include_directories(usb_midi_host_example PRIVATE
- ${CMAKE_CURRENT_LIST_DIR}
-)
 
-target_link_options(usb_midi_host_example PRIVATE -Xlinker --print-memory-usage)
-target_compile_options(usb_midi_host_example PRIVATE -Wall -Wextra)
-target_link_libraries(usb_midi_host_example tinyusb_host tinyusb_board usb_midi_host_app_driver pico_stdlib)
-if(DEFINED PICO_BOARD)
-if(${PICO_BOARD} MATCHES "pico_w")
-message("board is pico_w")
-# add additional compile and link options
-target_link_libraries(usb_midi_host_example pico_cyw43_arch_none)
-else()
-message("board is pico")
-endif()
-else()
-message("board is not defined")
-endif()
+target_include_directories(usb_midi_host_example PRIVATE)
 
-pico_add_extra_outputs(usb_midi_host_example)
-
+# Add the compiler flag for CFG_TUSB_MCU
+target_compile_definitions(usb_midi_host_example PRIVATE CFG_TUSB_MCU)

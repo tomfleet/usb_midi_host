@@ -33,6 +33,8 @@
  * This program works with a single USB MIDI device connected via a USB hub, but it
  * does not handle multiple USB MIDI devices connected at the same time.
  */
+#define CFG_TUSB_MCU OPT_MCU_RP2040 
+
 #include <stdio.h>
 #include <stdbool.h>
 #include "pico/stdlib.h"

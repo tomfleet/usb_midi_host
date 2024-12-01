@@ -17,4 +17,3 @@ target_include_directories(usb_midi_host_app_driver INTERFACE
  ${CMAKE_CURRENT_LIST_DIR}
 )
 target_link_libraries(usb_midi_host_app_driver INTERFACE usb_midi_host)
-

@@ -1,3 +1,19 @@
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 2.1.0)
+set(toolchainVersion 13_3_Rel1)
+set(picotoolVersion 2.1.0)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+# ====================================================================================
+set(PICO_BOARD solderparty_rp2350_stamp_xl CACHE STRING "Board type")
+
 cmake_minimum_required(VERSION 3.13)
 
 set(BOARD pico_sdk)
@@ -16,6 +32,7 @@ add_executable(usb_midi_host_pio_example
 
 pico_enable_stdio_uart(usb_midi_host_pio_example 1)
 #pico_enable_stdio_usb(usb_midi_host_pio_example 1)
+target_compile_definitions(usb_midi_host_example PRIVATE CFG_TUSB_MCU=OPT_MCU_RP2040)
 
 target_include_directories(usb_midi_host_pio_example PRIVATE
  ${CMAKE_CURRENT_LIST_DIR}
